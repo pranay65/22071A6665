@@ -1,0 +1,59 @@
+### Create a new user
+POST http://localhost:4500/users/register
+Content-Type: application/json
+
+{
+    "username": "Ram",
+    "password": "123",
+    "savedRecipes": [],
+    "recipeCount": 0
+}
+
+
+### Get all users
+GET http://localhost:4500/users/all-users
+
+### Login User
+POST http://localhost:4500/users/login
+Content-Type: application/json
+
+{
+    "username": "Ramesh",
+    "password": "ramesh123"
+}
+
+### Get all Recipes
+GET http://localhost:4500/recipes/
+
+
+### Create a Recipe
+POST http://localhost:4500/recipes/create
+Content-Type: application/json
+
+{
+    "recipeID": "",
+    "username": "Ram",
+    "name": "Chicken Biryani",
+    "ingredients": ["Basmati Rice", "Chicken", "Masala", "Salt"],
+    "instructions": "loremlore mloremloremloremloreml oremlorem loremloremlore mloremloremloremloremlorem",
+    "time": "60 minutes",
+    "imgURL": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/04/veg-biryani-1.jpg"
+}
+
+
+### Save a Recipe
+POST http://localhost:4500/recipes/save
+Content-Type: application/json
+
+{
+    "username": "Ram",
+    "recipeID": "Ram0"
+}
+
+### Get Saved Recipes
+PUT http://localhost:4500/recipes/saved
+Content-Type: application/json
+
+{
+    "username": "test"
+}
