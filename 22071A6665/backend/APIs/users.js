@@ -3,16 +3,8 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const userApp = exp.Router();
 const expressAsyncHandler = require('express-async-handler');
-
-const getAllUsers = expressAsyncHandler(async (req, res)=>{
-    const usersCollection = req.app.get('usersCollection');
-    const users = await usersCollection.find().toArray();
-    if(users.length === 0){
-        return res.send('No users available');
-    }else{
-        res.send({payload: users});
-    }
-});
+require('dotenv').config();
+const tkn = process.env.TOKEN;
 
 const createNewUser = expressAsyncHandler(async (req, res)=>{
     const usersCollection = req.app.get('usersCollection');
@@ -22,7 +14,7 @@ const createNewUser = expressAsyncHandler(async (req, res)=>{
     }
     let tempUser = await usersCollection.findOne({username: newUser.username});
     if(tempUser){
-        return res.send({status: 409, message:"User already exists"});
+        return res.send({status: 409, message:"Username already taken!"});
     }
     const hashedPassword = await bcryptjs.hash(newUser.password, 7);
     newUser.password = hashedPassword;
@@ -43,11 +35,10 @@ const loginUser = expressAsyncHandler(async (req, res) => {
     }
     const userID = dbUser._id;
     const dbUsername = dbUser.username;
-    const token = jwt.sign({id: userID}, "secret");
+    const token = jwt.sign({id: userID}, tkn);
     return res.send({token, dbUsername, message:"Login Successful!"});
 })
 
-userApp.get('/all-users', getAllUsers);
 userApp.post('/register', createNewUser);
 userApp.post('/login', loginUser);
 
