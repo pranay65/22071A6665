@@ -67,7 +67,7 @@ function Upload(){
                             <label htmlFor='ingredients'>Ingredients:</label>
                             {
                                 recipe.ingredients.map((ing, i)=>(
-                                   <input key={i} type='text' name='ingredients' value={ing} onChange={(event) => handleIngChange(event, i)} />)
+                                   <input key={i} type='text' name='ingredients' required value={ing} onChange={(event) => handleIngChange(event, i)} />)
                                 )
                             }
                             <button className='red-btn' onClick={addIng} type='button'>Add Ingredient</button>

@@ -54,6 +54,7 @@ function Home(){
     }
 
     const isSaved = (id)=>{
+        console.log("Saved", savedRecipes);
         for (let i = 0; i < savedRecipes.length; i++) {
             const element = savedRecipes[i];
             // eslint-disable-next-line

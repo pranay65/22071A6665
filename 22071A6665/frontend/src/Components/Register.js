@@ -36,7 +36,7 @@ function Register() {
                 </div>
                 <div className='input-group'>
                     <label htmlFor='password'>Password: </label>
-                    <input type='password' id='password' value={password} onChange={(event)=>{setPassword(event.target.value)}}/>
+                    <input type='password' id='password' value={password} minLength={8} onChange={(event)=>{setPassword(event.target.value)}}/>
                 </div>
                 <button type='submit' className='btn'>Submit</button>
             </form>
